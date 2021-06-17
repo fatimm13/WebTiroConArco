@@ -1,0 +1,95 @@
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+		<title>Torneo</title>
+        <script>
+            var nombre = getQuery("nombre");
+            var tipo = getQuery("tipo");
+            var edad = getQuery("rondas");
+
+            var usuario = new Persona(nombre,0,0,0);
+
+            var participantes = ["Magdalena","Francisco","Emilia","Pedro"]
+            var puntuaciones = new Array();
+            function Persona(nombre, puntuacion, nueves, dieces){
+                this.nombre = nombre;
+                this.puntuacion = puntuacion;
+                this.nueves = nueves;
+                this.dieces = dieces;
+            }
+
+            function comparePersona(a,b) {
+                let i = a.puntuacion-b.puntuacion;
+
+                if(i==0){
+                    i = a.dieces - b.dieces;
+                    if(i==0){
+                        i=a.nueves - b.nueves;
+                    }
+                }
+
+                return -i;
+            };
+
+            function getQuery(q) {
+                return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
+            }
+
+            function cargaNombre(){
+                document.body.innerHTML=nombre;
+            }
+
+            function load(){
+                
+
+                for(var i = 0;i<participantes.length;i++){
+                    let n = getRandomInt(0,5);
+                    let d = getRandomInt(0,5);
+                    let p = 9*n + 10*d + getRandomInt(0,205);
+
+                    puntuaciones.push(new Persona(participantes[i],p,n,d));
+                }
+
+                puntuaciones.push(usuario);
+
+                puntuaciones.sort(comparePersona);
+
+                let table = document.getElementById("tabla");
+                for(var i = 1;i<=puntuaciones.length;i++){
+                    let row = table.insertRow(i);
+                    row.insertCell(0).innerHTML = i;
+                    row.insertCell(1).innerHTML = puntuaciones[i-1].nombre;
+                    row.insertCell(2).innerHTML = puntuaciones[i-1].puntuacion;
+                }
+            }
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            window.onload = load;
+        </script>
+	</head>
+	<body>
+        <table id = "tabla" class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Puntuacion</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+	</body>
+
+    
+</html>
