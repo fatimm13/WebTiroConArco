@@ -111,6 +111,7 @@
                 }
                 tiroRonda = r;
                 ta.scrollTop = ta.scrollHeight;
+
             }
             function posicion(){
                 var i = 0;
@@ -159,7 +160,7 @@
             function incluirPuntuacion(){
                 let valor = parseInt(document.getElementById("puntuacion").value,10);
                 if(valor>=0 && valor<=10){
-
+                    document.getElementById("error").hidden=true;
                     for(var i = 0;i<puntuaciones.length;i++){
                         let n = getRandomInt(0,10);
 
@@ -185,6 +186,8 @@
                     document.getElementById("nueves").innerHTML=usuario.nueves;
                     document.getElementById("dieces").innerHTML=usuario.dieces;
                     document.getElementById("total").innerHTML=usuario.puntuacion;
+                }else{
+                    document.getElementById("error").hidden=false;
                 }
                 
             }
@@ -230,6 +233,9 @@
                                 <span class="input-group-text">Puntuación</span>
                                 <input type="number" min="0" max="10" class="form-control" id="puntuacion" maxlength="2" size="2">
                                 <button id="boton" class="btn btn-outline-secondary" type="button" onclick="incluirPuntuacion()">Añadir</button>
+                            </div>
+                            <div id = "error"class="alert alert-danger" role="alert" hidden >
+                                La puntuación debe estar entre 0 y 10.
                             </div>
                         </div>
                         <div class="col-sm-8">
