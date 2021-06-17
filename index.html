@@ -39,30 +39,44 @@
         function filtro(torneo){
             var getSelectedValue1 = document.querySelector('input[name="edad"]:checked');   
             var getSelectedValue2 = document.querySelector('input[name="modalidad"]:checked'); 
-
-            return torneo.edad== getSelectedValue1.value && torneo.tipo==getSelectedValue2.value;
+            var a = true;
+            var b = true;
+            if(getSelectedValue1!=null){
+                a=torneo.edad== getSelectedValue1.value;
+            }
+            if(getSelectedValue2!=null){
+                b=torneo.tipo==getSelectedValue2.value;
+            }
+            return  a&& b;
         }
 
         function myFunction() {
+            let e = document.getElementById("nombre");
+            
             var lista = torneos.filter(filtro);
             let botones = document.getElementById("botones");
             botones.innerHTML = "";
             
             lista.forEach(e => agregarBoton(botones,e.nombre,"cargarPagina("+e.tipo+","+e.edad+","+e.rondas+")"));
+            
+            
         }
         function agregarBoton(elemento, texto, funcion) { 
             elemento.innerHTML+='<input type="button" class="btn btn-outline-dark btn-lg" value="'+texto+'" onclick="'+funcion+'">'; 
         } 
         function cargarPagina(tipo,edad,rondas){
             let e = document.getElementById("nombre");
-            
-            location.replace("./torneo.html?nombre="+e.value+"&tipo="+tipo.value+"&edad="+edad.value+"&rondas="+rondas);
+            if(e.value==""){
+                document.getElementById("error").hidden=false;
+            }else{
+                location.replace("./torneo.html?nombre="+e.value+"&tipo="+tipo.value+"&edad="+edad.value+"&rondas="+rondas);
+            }
         }
     </script>
 
 </head>
 <body>
-
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
@@ -82,8 +96,11 @@
             
                 <div>
                     Inserte el nombre con el que va a competir en el torneo. <br/>
-
+                    
                     <label for="nombre" class="col-form-label fw-bold fs-4">Nombre:</label>
+                    <div id = "error"class="alert alert-danger" role="alert" hidden >
+                        Introduzca un nombre.
+                    </div>
                     <div class="col-sm-8">
                         <input type="text" class="form-control form-control-lg" id="nombre" placeholder="Introduce el nombre de usuario..." required />
                     </div>
