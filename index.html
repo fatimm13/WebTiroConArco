@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <title>Buscar Torneo</title>
 
     <!--Aqui esta linkado el estilo pero se podria definir tambien una etiqueta style en el html-->
     <link rel="stylesheet" href="style.css">
@@ -18,8 +22,71 @@
 
 </head>
 <body>
+
+    <div class="container-fluid" style="padding: 2%">
     
-    <h1>Super web tiro con arco</h1>
+        <h1>Super web tiro con arco</h1>
+
+        <form method="POST" action="index.html">
+
+            <div class="row">
+                <label for="nombre" class="col-sm-1 col-form-label col-form-label">Nombre:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control form-control" id="nombre" placeholder="Introduce el nombre de usuario..." />
+                </div>
+            </div>
+
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-1 pt-0">Edad:</legend>
+                <div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="juvenil" name="edad" value="juvenil">
+                        <label for="juvenil" class="form-check-label">Juvenil</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="senior" name="edad" value="senior">
+                        <label for="senior" class="form-check-label">Senior</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="veterano" name="edad" value="veterano">
+                        <label for="veterano" class="form-check-label">Veterano</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-1 pt-0">Modalidad:</legend>
+                <div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="olimpico" name="modalidad" value="olimpico">
+                        <label for="olimpico" class="form-check-label">Arco olímpico</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="desnudo" name="modalidad" value="desnudo">
+                        <label for="desnudo" class="form-check-label">Arco desnudo</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instintivo" name="modalidad" value="instintivo">
+                        <label for="instintivo" class="form-check-label">Arco instintivo</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="longbow" name="modalidad" value="longbow">
+                        <label for="longbow" class="form-check-label">Arco Longbow</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <input type="submit" value="Buscar torneo" class="btn btn-primary"/>
+            
+        </form>
+
+        <h2>Lista de torneos</h2>
+
+        <a href="torneo.html"><span class="badge bg-primary">Torneo 1</span></a>
+
+    </div>
+
+    
 
     <h3 id="prueba"> Texto de prueba sin cambiar </h3>
     <button type="button" onclick="funcionDePrueba()"> Pulsame para probar JS </button>
