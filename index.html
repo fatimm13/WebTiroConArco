@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--Aqui esta linkado el estilo pero se podria definir tambien una etiqueta style en el html-->
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function funcionDePrueba(){
+            alert('Mensaje de prueba JavaScript');
+            document.getElementById("prueba").innerHTML = "Texto cambiado por JS";
+        }
+    </script>
+
+</head>
+<body>
+    
+    <h1>Super web tiro con arco</h1>
+
+    <h3 id="prueba"> Texto de prueba sin cambiar </h3>
+    <button type="button" onclick="funcionDePrueba()"> Pulsame para probar JS </button>
+
+</body>
+</html>
