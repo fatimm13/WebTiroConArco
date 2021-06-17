@@ -66,7 +66,21 @@
                     row.insertCell(0).innerHTML = i;
                     row.insertCell(1).innerHTML = puntuaciones[i-1].nombre;
                     row.insertCell(2).innerHTML = puntuaciones[i-1].puntuacion;
+                    if (i == 1) {
+                        row.classList.add("table-warning");
+                        row.classList.remove("table-striped");
+                    } else if (i == 2) {
+                        row.classList.add("table-danger");
+                        row.classList.remove("table-striped");
+                    } else if (i == 3) {
+                        row.classList.add("table-info");
+                        row.classList.remove("table-striped");
+                    }
+                    if (puntuaciones[i-1] === usuario) {
+                        row.classList.add("fw-bold");
+                    }
                 }
+
             }
 
             function getRandomInt(min, max) {
@@ -77,19 +91,72 @@
         </script>
 	</head>
 	<body>
-        <table id = "tabla" class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Puntuacion</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-            </tbody>
-          </table>
-	</body>
 
-    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="diana.png" alt="Imagen de una diana" width="30" height="30" class="d-inline-block align-text-top">
+                    Tiro con arco
+                </a>
+            </div>
+        </nav>
+
+        <div class="table-responsive" style="padding: 2%;">
+            <table id = "tabla" class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Puesto</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Puntuaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table-light">
+                    <tr></tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="container-fluid fs-5" style="padding-left: 2%;">
+
+            <div class="row">
+            
+                <div class="col-sm-8" style="padding-left: 5%; padding-right: 5%;">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-text">Puntuación</span>
+                                <input type="number" min="0" max="10" class="form-control" id="puntuacion" maxlength="2" size="2">
+                                <button class="btn btn-outline-secondary" type="button">Añadir</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="listaPuntuaciones" rows="10" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="col-sm-8">
+                    <div class="input-group">
+                        <span class="input-group-text fw-bold">Cantidad de 9 </span>
+                        <span class="input-group-text" id="nueves"> 0 </span>
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-text fw-bold">Cantidad de 10</span>
+                        <span class="input-group-text" id="dieces"> 0 </span>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-text fw-bold">Puntuacion total</span>
+                        <span class="input-group-text" id="total"> 0 </span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+	</body>
 </html>

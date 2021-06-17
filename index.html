@@ -14,12 +14,20 @@
     <link rel="stylesheet" href="style.css">
 
     <script>
-        const torneos = [new Torneo("Torneo1","juvenil","longbow",12),
-                            new Torneo("Torneo2","senior","desnudo",20),
-                            new Torneo("Torneo3","juvenil","olimpico",12),
-                            new Torneo("Torneo4","senior","instintivo",20),
-                            new Torneo("Torneo5","veterano","instintivo",12),
-                            new Torneo("Torneo6","veterano","olimpico",20)
+        const torneos = [
+                            new Torneo("Torneo juvenil Amigos del Arco (12 rondas a 6 flechas)", "juvenil", "longbow", 12),
+                            new Torneo("Torneo juvenil Arqueros de Ronda (20 rondas a 3 flechas)","juvenil","longbow",20),
+                            new Torneo("Torneo juvenil Churriana en la Diana (12 rondas a 6 flechas)","juvenil","olimpico",12),
+                            new Torneo("Torneo juvenil Antequera Certera (20 rondas a 3 flechas)","juvenil","desnudo",20),
+                            new Torneo("Torneo juvenil Final Copa Mundial (20 rondas a 3 flechas)","juvenil","instintivo",20),
+                            new Torneo("Torneo senior Churriana en la Diana (20 rondas a 3 flechas)","senior","olimpico",20),
+                            new Torneo("Torneo senior Amigos del Arco (12 rondas a 6 flechas)","senior","longbow",12),
+                            new Torneo("Torneo senior Antequera Certera (20 rondas a 3 flechas)","senior","desnudo",20),
+                            new Torneo("Torneo senior Final Copa Nacional (12 rondas a 6 flechas)","senior","instintivo",12),
+                            new Torneo("Torneo veterano Final Copa Regional (12 rondas a 6 flechas)","veterano","instintivo",12),
+                            new Torneo("Torneo veterano Churriana en la Diana (20 rondas a 3 flechas)","veterano","olimpico",20),
+                            new Torneo("Torneo veterano Amigos del Arco (12 rondas a 6 flechas)","veterano","longbow",12),
+                            new Torneo("Torneo veterano Antequera Certera (20 rondas a 3 flechas)","veterano","desnudo",20)
                         ];
         function Torneo(nombre,edad,tipo,rondas){
             this.nombre = nombre;
@@ -43,88 +51,100 @@
             lista.forEach(e => agregarBoton(botones,e.nombre,"cargarPagina("+e.tipo+","+e.edad+","+e.rondas+")"));
         }
         function agregarBoton(elemento, texto, funcion) { 
-            elemento.innerHTML+='<input type="button" class="btn btn-primary" value="'+texto+'" onclick="'+funcion+'">'; 
+            elemento.innerHTML+='<input type="button" class="btn btn-outline-dark btn-lg" value="'+texto+'" onclick="'+funcion+'">'; 
         } 
         function cargarPagina(tipo,edad,rondas){
             let e = document.getElementById("nombre");
             
             location.replace("./torneo.html?nombre="+e.value+"&tipo="+tipo.value+"&edad="+edad.value+"&rondas="+rondas);
         }
-        function funcionDePrueba(){
-            alert('Mensaje de prueba JavaScript');
-            document.getElementById("prueba").innerHTML = "Texto cambiado por JS";
-        }
     </script>
 
 </head>
 <body>
 
-    <div class="container-fluid" style="padding: 2%">
-    
-        <h1>Super web tiro con arco</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="diana.png" alt="Imagen de una diana" width="30" height="30" class="d-inline-block align-text-top">
+                Tiro con arco
+            </a>
+        </div>
+    </nav>
 
-        <form method="POST" action="index.html">
+    <div class="container-fluid fs-5" style="padding-left: 2%; padding-top: 1%;">
+        
+        <div class="row">
+            
+            <div class="col">
 
-            <div class="row">
-                <label for="nombre" class="col-sm-1 col-form-label col-form-label">Nombre:</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control form-control" id="nombre" placeholder="Introduce el nombre de usuario..." />
+                <h1> Buscar torneo </h1> 
+            
+                <div>
+                    Inserte el nombre con el que va a competir en el torneo. <br/>
+
+                    <label for="nombre" class="col-form-label fw-bold fs-4">Nombre:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-lg" id="nombre" placeholder="Introduce el nombre de usuario..." required />
+                    </div>
                 </div>
+
+                <br/>
+
+                Seleccione la categoría según su edad y la modalidad del torneo.
+
+                <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-1 pt-0 fw-bold fs-4">Edad:</legend>
+                    <div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="juvenil" name="edad" value="juvenil" required>
+                            <label for="juvenil" class="form-check-label">Juvenil</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="senior" name="edad" value="senior">
+                            <label for="senior" class="form-check-label">Senior</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="veterano" name="edad" value="veterano">
+                            <label for="veterano" class="form-check-label">Veterano</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-1 pt-0 fw-bold fs-4">Modalidad:</legend>
+                    <div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="olimpico" name="modalidad" value="olimpico" required>
+                            <label for="olimpico" class="form-check-label">Arco olímpico</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="desnudo" name="modalidad" value="desnudo">
+                            <label for="desnudo" class="form-check-label">Arco desnudo</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="instintivo" name="modalidad" value="instintivo">
+                            <label for="instintivo" class="form-check-label">Arco instintivo</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="longbow" name="modalidad" value="longbow">
+                            <label for="longbow" class="form-check-label">Arco Longbow</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <button class="btn btn-primary btn-lg" onclick="myFunction()">Buscar</button>
+                
             </div>
 
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-1 pt-0">Edad:</legend>
-                <div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="juvenil" name="edad" value="juvenil">
-                        <label for="juvenil" class="form-check-label">Juvenil</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="senior" name="edad" value="senior">
-                        <label for="senior" class="form-check-label">Senior</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="veterano" name="edad" value="veterano">
-                        <label for="veterano" class="form-check-label">Veterano</label>
-                    </div>
-                </div>
-            </fieldset>
+            <div class="col">
+                <h1>Torneos disponibles:</h1>
+                <p class="fs-5"> Pulse en el torneo al que desee acceder </p>
 
-            <fieldset class="row mb-3">
-                <legend class="col-form-label col-sm-1 pt-0">Modalidad:</legend>
-                <div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="olimpico" name="modalidad" value="olimpico">
-                        <label for="olimpico" class="form-check-label">Arco olímpico</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="desnudo" name="modalidad" value="desnudo">
-                        <label for="desnudo" class="form-check-label">Arco desnudo</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="instintivo" name="modalidad" value="instintivo">
-                        <label for="instintivo" class="form-check-label">Arco instintivo</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="longbow" name="modalidad" value="longbow">
-                        <label for="longbow" class="form-check-label">Arco Longbow</label>
-                    </div>
-                </div>
-            </fieldset>
-
-            
-        </form>
-
-        <button class="btn btn-primary" onclick="myFunction()">Buscar</button>
-
-        <h2>Lista de torneos</h2>
-        <div id ="botones"></div>
+                <div id ="botones" class="d-grid gap-2 col-sm-6"></div>
+            </div>
+        </div>
     </div>
-
-    
-
-    <h3 id="prueba"> Texto de prueba sin cambiar </h3>
-    <button type="button" onclick="funcionDePrueba()"> Pulsame para probar JS </button>
 
 </body>
 </html>
