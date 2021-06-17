@@ -11,12 +11,17 @@
         <script>
             var nombre = getQuery("nombre");
             var tipo = getQuery("tipo");
-            var edad = getQuery("rondas");
+            var edad = getQuery("edad");
+            var rondas = getQuery("rondas");
 
             var usuario = new Persona(nombre,0,0,0);
 
             var participantes = ["Magdalena","Francisco","Emilia","Pedro"]
             var puntuaciones = new Array();
+
+            var rondaActual = 1;
+            var tiroRonda = 0;
+
             function Persona(nombre, puntuacion, nueves, dieces){
                 this.nombre = nombre;
                 this.puntuacion = puntuacion;
@@ -49,17 +54,82 @@
                 
 
                 for(var i = 0;i<participantes.length;i++){
-                    let n = getRandomInt(0,5);
-                    let d = getRandomInt(0,5);
-                    let p = 9*n + 10*d + getRandomInt(0,205);
 
-                    puntuaciones.push(new Persona(participantes[i],p,n,d));
+                    puntuaciones.push(new Persona(participantes[i],0,0,0));
                 }
 
                 puntuaciones.push(usuario);
 
                 puntuaciones.sort(comparePersona);
+                cargarTabla();
+                
+                inicializarTextArea();
+                
+            }
 
+            function inicializarTextArea(){
+                let ta = document.getElementById("listaPuntuaciones");
+                let e = edad.charAt(0).toUpperCase() + edad.slice(1);
+                let t = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+                ta.innerHTML = "Jugador:"+nombre+"\n" + "Categoría: "+e+"\n"+"Modalidad: "+t+"\n";
+
+                ta.innerHTML += "__________________________\n";
+                
+            }
+
+            function actualizarTextArea(valor){
+                let ta = document.getElementById("listaPuntuaciones");
+
+                tiroRonda++;
+                let y = 1;
+
+                if(rondas==12){
+                    y = 6;
+                }else if(rondas==20){
+                    y = 3;
+                }
+
+                var r = tiroRonda % y;
+                rondaActual += (tiroRonda - r) / y;
+                
+
+                if(tiroRonda==1){
+                    ta.innerHTML += "Ronda "+rondaActual+"\n";
+                    ta.innerHTML += "__________________________\n";
+                }
+
+                ta.innerHTML += "Tiro "+tiroRonda+": "+valor+" puntos. \n";
+
+                if(r==0){
+                    ta.innerHTML += "__________________________\n";
+                }
+
+                if(rondaActual>rondas){
+                    ta.innerHTML += "Fin del torneo.\n";
+                    ta.innerHTML += "Has quedado en el puesto "+posicion();
+                    document.getElementById("boton").disabled = true;
+                }
+                tiroRonda = r;
+                ta.scrollTop = ta.scrollHeight;
+            }
+            function posicion(){
+                var i = 0;
+                while(i<puntuaciones.length && usuario!==puntuaciones[i]){
+                    i++;
+                }
+                return i+1;
+            }
+            function borrarTabla(){
+                let table = document.getElementById("tabla");
+                let n = table.rows.length;
+                for(var i = 1; i<n;i++){
+                    table.deleteRow(1);
+                }
+                var r =document.createElement('TR');
+                table.tBodies[0].appendChild(r);
+            }
+
+            function cargarTabla(){
                 let table = document.getElementById("tabla");
                 for(var i = 1;i<=puntuaciones.length;i++){
                     let row = table.insertRow(i);
@@ -80,11 +150,43 @@
                         row.classList.add("fw-bold");
                     }
                 }
-
             }
 
             function getRandomInt(min, max) {
                 return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            function incluirPuntuacion(){
+                let valor = parseInt(document.getElementById("puntuacion").value,10);
+                if(valor>=0 && valor<=10){
+
+                    for(var i = 0;i<puntuaciones.length;i++){
+                        let n = getRandomInt(0,10);
+
+                        if(puntuaciones[i]===usuario){
+                            n = valor;
+                            
+                        }
+
+                        if(n==10){
+                            puntuaciones[i].dieces += 1;
+                        }else if(n==9){
+                            puntuaciones[i].nueves += 1;
+                        }
+
+                        puntuaciones[i].puntuacion += n;
+                        
+                    }
+
+                    puntuaciones.sort(comparePersona);
+                    borrarTabla();
+                    cargarTabla();
+                    actualizarTextArea(valor);
+                    document.getElementById("nueves").innerHTML=usuario.nueves;
+                    document.getElementById("dieces").innerHTML=usuario.dieces;
+                    document.getElementById("total").innerHTML=usuario.puntuacion;
+                }
+                
             }
 
             window.onload = load;
@@ -127,11 +229,11 @@
                             <div class="input-group">
                                 <span class="input-group-text">Puntuación</span>
                                 <input type="number" min="0" max="10" class="form-control" id="puntuacion" maxlength="2" size="2">
-                                <button class="btn btn-outline-secondary" type="button">Añadir</button>
+                                <button id="boton" class="btn btn-outline-secondary" type="button" onclick="incluirPuntuacion()">Añadir</button>
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <textarea class="form-control" id="listaPuntuaciones" rows="10" readonly></textarea>
+                            <textarea style="white-space: pre-line;" class="form-control" id="listaPuntuaciones" rows="10" readonly></textarea>
                         </div>
                     </div>
                 </div>
