@@ -18,17 +18,25 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Primer puesto',     26],
-          ['Segundo puesto',      10],
-          ['Tercer puesto', 5],
-          ['Fuera de podio', 15]
+          ['Puesto', 'Veces'],
+          ['Primer puesto', 5],
+          ['Segundo puesto', 10],
+          ['Tercer puesto', 15],
+          ['Fuera de podio', 26]
+        ]);
+        var data2 = google.visualization.arrayToDataTable([
+          ['Puntos', 'Porcentaje'],
+          ['10 puntos', 25],
+          ['9 puntos', 30],
+          ['Fuera de amarillo', 40],
+          ['Fallo', 5]
         ]);
 
         var options = {
-          title: 'Estadísticas de posición',
-          pieSliceText: 'label',
-          pieStartAngle: 14,
+          title: 'Estadísticas de puesto',
+          pieSliceText: 'value',
+          pieSliceTextStyle: {fontSize: 25},
+
           slices: {
             0: { color: '#f0bf00' },
             1: { color: '#c41800' },
@@ -39,12 +47,35 @@
           titleTextStyle:{
             color: 'black', 
             fontSize: 20
+          },
+          legend:{
+            position: 'labeled'
+          }
+        };
+        var options2 = {
+          title: 'Estadísticas de flecha',
+          pieSliceText: 'none',
+          slices: {
+            0: { color: '#f0bf00' },
+            1: { color: '#c41800' },
+            2: { color: '#0092e7'},
+            3: { color: '#464645'}
+
+          },
+          titleTextStyle:{
+            color: 'black', 
+            fontSize: 20
+          },
+          legend:{
+            position: 'labeled'
           }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
 
         chart.draw(data, options);
+        chart2.draw(data2, options2);
       }
     </script>
 </head>
@@ -57,39 +88,41 @@
                 <img src="diana.png" alt="Imagen de una diana" width="30" height="30" class="d-inline-block align-text-top">
                 Tiro con arco
             </a>
+            <a class="navbar-brand" href="stats.html">
+              <img src="copa.png" alt="Imagen de una copa" width="30" height="30" class="d-inline-block align-text-top">
+              Estadísticas
+            </a>
         </div>
     </nav>
 
     
 
     <div class="container-fluid fs-5" style="padding-left: 2%; padding-top: 1%;">
-        
-        <h1>Tus estadísticas:</h1>
 
         <div class="row">
             
             <div class="col">
               
-              <h2>Generales</h2>
-              <b>Flecha media:</b>8.2<br/>
-              <b>Porcentaje de flechas en 10: </b>87.9%
-              
+              <h1>Estadísticas Generales</h1>
+              <br/>
               <h2>20 rondas a 3 flechas</h2>
-                <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion" id="accordionUno">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                         Arco Olímpico
                       </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                       <div class="accordion-body">
                         <b>Número de torneos en los que has participado:</b> 24<br/>
-                        Número total de  victorias: <b>18</b><br/>
-                        Porcentaje de  victorias: <b>75%</b><br/>
-                        Media de puntos: <b>503</b><br/>
-                        Puntuación máxima obtenida: <b>551</b><br/>
-                        Puntuación mínima obtenida: <b>474</b><br/>
+                        <b>Número total de  victorias:</b> 18<br/>
+                        <b>Porcentaje de  victorias:</b> 75%<br/>
+                        <b>Media de puntos:</b> 503<br/>
+                        <b>Puntuación máxima obtenida:</b> 551<br/>
+                        <b>Puntuación mínima obtenida:</b> 474<br/>
+                        <b>Flecha media: </b>8.2<br/>
+                        <b>Porcentaje de flechas en 10: </b>87.9%
                       </div>
                     </div>
                   </div>
@@ -101,12 +134,14 @@
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                       <div class="accordion-body">
-                        Número de torneos en los que has participado: <b>24</b><br/>
-                        Número total de  victorias: <b>18</b><br/>
-                        Porcentaje de  victorias: <b>75%</b><br/>
-                        Media de puntos: <b>503</b><br/>
-                        Puntuación máxima obtenida: <b>551</b><br/>
-                        Puntuación mínima obtenida: <b>474</b><br/>
+                        <b>Número de torneos en los que has participado:</b> 24<br/>
+                        <b>Número total de  victorias:</b> 18<br/>
+                        <b>Porcentaje de  victorias:</b> 75%<br/>
+                        <b>Media de puntos:</b> 503<br/>
+                        <b>Puntuación máxima obtenida:</b> 551<br/>
+                        <b>Puntuación mínima obtenida:</b> 474<br/>
+                        <b>Flecha media: </b>8.2<br/>
+                        <b>Porcentaje de flechas en 10: </b>87.9%
                       </div>
                     </div>
                   </div>
@@ -118,111 +153,124 @@
                     </h2>
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                       <div class="accordion-body">
-                        Número de torneos en los que has participado: <b>24</b><br/>
-                        Número total de  victorias: <b>18</b><br/>
-                        Porcentaje de  victorias: <b>75%</b><br/>
-                        Media de puntos: <b>503</b><br/>
-                        Puntuación máxima obtenida: <b>551</b><br/>
-                        Puntuación mínima obtenida: <b>474</b><br/>
+                        <b>Número de torneos en los que has participado:</b> 24<br/>
+                        <b>Número total de  victorias:</b> 18<br/>
+                        <b>Porcentaje de  victorias:</b> 75%<br/>
+                        <b>Media de puntos:</b> 503<br/>
+                        <b>Puntuación máxima obtenida:</b> 551<br/>
+                        <b>Puntuación mínima obtenida:</b> 474<br/>
+                        <b>Flecha media: </b>8.2<br/>
+                        <b>Porcentaje de flechas en 10: </b>87.9%
                       </div>
                     </div>
                   </div>
                   <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                         Arco Longbow
                       </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
                       <div class="accordion-body">
-                        Número de torneos en los que has participado: <b>24</b><br/>
-                        Número total de  victorias: <b>18</b><br/>
-                        Porcentaje de  victorias: <b>75%</b><br/>
-                        Media de puntos: <b>503</b><br/>
-                        Puntuación máxima obtenida: <b>551</b><br/>
-                        Puntuación mínima obtenida: <b>474</b><br/>
+                        <b>Número de torneos en los que has participado:</b> 24<br/>
+                        <b>Número total de  victorias:</b> 18<br/>
+                        <b>Porcentaje de  victorias:</b> 75%<br/>
+                        <b>Media de puntos:</b> 503<br/>
+                        <b>Puntuación máxima obtenida:</b> 551<br/>
+                        <b>Puntuación mínima obtenida:</b> 474<br/>
+                        <b>Flecha media: </b>8.2<br/>
+                        <b>Porcentaje de flechas en 10: </b>87.9%
                       </div>
                     </div>
                   </div>
                 </div>
-                
+              
+                <br/>
               <h2>12 rondas a 6 flechas</h2>
 
-              <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion" id="accordionDos">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                      Accordion Item #1
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOneTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOneTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseOneTwo">
+                      Arco Olímpico
                     </button>
                   </h2>
-                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div id="panelsStayOpen-collapseOneTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOneTwo">
                     <div class="accordion-body">
-                      Número de torneos en los que has participado: <b>24</b><br/>
-                      Número total de  victorias: <b>18</b><br/>
-                      Porcentaje de  victorias: <b>75%</b><br/>
-                      Media de puntos: <b>503</b><br/>
-                      Puntuación máxima obtenida: <b>551</b><br/>
-                      Puntuación mínima obtenida: <b>474</b><br/>
+                      <b>Número de torneos en los que has participado:</b> 24<br/>
+                      <b>Número total de  victorias:</b> 18<br/>
+                      <b>Porcentaje de  victorias:</b> 75%<br/>
+                      <b>Media de puntos:</b> 503<br/>
+                      <b>Puntuación máxima obtenida:</b> 551<br/>
+                      <b>Puntuación mínima obtenida:</b> 474<br/>
+                      <b>Flecha media: </b>8.2<br/>
+                      <b>Porcentaje de flechas en 10: </b>87.9%
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                      Accordion Item #2
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwoTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwoTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwoTwo">
+                      Arco Desnudo
                     </button>
                   </h2>
-                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                  <div id="panelsStayOpen-collapseTwoTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwoTwo">
                     <div class="accordion-body">
-                      Número de torneos en los que has participado: <b>24</b><br/>
-                      Número total de  victorias: <b>18</b><br/>
-                      Porcentaje de  victorias: <b>75%</b><br/>
-                      Media de puntos: <b>503</b><br/>
-                      Puntuación máxima obtenida: <b>551</b><br/>
-                      Puntuación mínima obtenida: <b>474</b><br/>
+                      <b>Número de torneos en los que has participado:</b> 24<br/>
+                      <b>Número total de  victorias:</b> 18<br/>
+                      <b>Porcentaje de  victorias:</b> 75%<br/>
+                      <b>Media de puntos:</b> 503<br/>
+                      <b>Puntuación máxima obtenida:</b> 551<br/>
+                      <b>Puntuación mínima obtenida:</b> 474<br/>
+                      <b>Flecha media: </b>8.2<br/>
+                      <b>Porcentaje de flechas en 10: </b>87.9%
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                      Accordion Item #3
+                  <h2 class="accordion-header" id="panelsStayOpen-headingThreeTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThreeTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseThreeTwo">
+                      Arco Instintivo
                     </button>
                   </h2>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                  <div id="panelsStayOpen-collapseThreeTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThreeTwo">
                     <div class="accordion-body">
-                      Número de torneos en los que has participado: <b>24</b><br/>
-                      Número total de  victorias: <b>18</b><br/>
-                      Porcentaje de  victorias: <b>75%</b><br/>
-                      Media de puntos: <b>503</b><br/>
-                      Puntuación máxima obtenida: <b>551</b><br/>
-                      Puntuación mínima obtenida: <b>474</b><br/>
+                      <b>Número de torneos en los que has participado:</b> 24<br/>
+                      <b>Número total de  victorias:</b> 18<br/>
+                      <b>Porcentaje de  victorias:</b> 75%<br/>
+                      <b>Media de puntos:</b> 503<br/>
+                      <b>Puntuación máxima obtenida:</b> 551<br/>
+                      <b>Puntuación mínima obtenida:</b> 474<br/>
+                      <b>Flecha media: </b>8.2<br/>
+                      <b>Porcentaje de flechas en 10: </b>87.9%
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                      Accordion Item #4
+                  <h2 class="accordion-header" id="panelsStayOpen-headingFourTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFourTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseFourTwo">
+                      Arco Longbow
                     </button>
                   </h2>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                  <div id="panelsStayOpen-collapseFourTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFourTwo">
                     <div class="accordion-body">
-                      Número de torneos en los que has participado: <b>24</b><br/>
-                      Número total de  victorias: <b>18</b><br/>
-                      Porcentaje de  victorias: <b>75%</b><br/>
-                      Media de puntos: <b>503</b><br/>
-                      Puntuación máxima obtenida: <b>551</b><br/>
-                      Puntuación mínima obtenida: <b>474</b><br/>
+                      <b>Número de torneos en los que has participado:</b> 24<br/>
+                      <b>Número total de  victorias:</b> 18<br/>
+                      <b>Porcentaje de  victorias:</b> 75%<br/>
+                      <b>Media de puntos:</b> 503<br/>
+                      <b>Puntuación máxima obtenida:</b> 551<br/>
+                      <b>Puntuación mínima obtenida:</b> 474<br/>
+                      <b>Flecha media: </b>8.2<br/>
+                      <b>Porcentaje de flechas en 10: </b>87.9%
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="col">
                 <h1>Gráficos:</h1>
                 <div id="piechart" style="width: 900px; height: 500px;"></div>
+                <div id="piechart2" style="width: 900px; height: 500px;"></div>
             </div>
         </div>
     </div>
