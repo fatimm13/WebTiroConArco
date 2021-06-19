@@ -36,6 +36,10 @@ function drawChart() {
         legend:{
             position: 'labeled',
             textStyle: {fontSize: 18}
+        },
+        backgroundColor:{
+            stroke:'black',
+            strokeWidth: 3
         }
     };
 
@@ -57,6 +61,10 @@ function drawChart() {
         legend:{
             position: 'labeled',
             textStyle: {fontSize: 18}
+        },
+        backgroundColor:{
+            stroke:'black',
+            strokeWidth: 3
         }
     };
 
