@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -13,67 +12,7 @@
     <!--Aqui esta linkado el estilo pero se podria definir tambien una etiqueta style en el html-->
     <link rel="stylesheet" href="style.css">
 
-    <script>
-        const torneos = [
-                            new Torneo("Torneo juvenil Amigos del Arco (12 rondas a 6 flechas)", "juvenil", "longbow", 12),
-                            new Torneo("Torneo juvenil Arqueros de Ronda (20 rondas a 3 flechas)","juvenil","longbow",20),
-                            new Torneo("Torneo juvenil Churriana en la Diana (12 rondas a 6 flechas)","juvenil","olimpico",12),
-                            new Torneo("Torneo juvenil Antequera Certera (20 rondas a 3 flechas)","juvenil","desnudo",20),
-                            new Torneo("Torneo juvenil Final Copa Mundial (20 rondas a 3 flechas)","juvenil","instintivo",20),
-                            new Torneo("Torneo senior Churriana en la Diana (20 rondas a 3 flechas)","senior","olimpico",20),
-                            new Torneo("Torneo senior Amigos del Arco (12 rondas a 6 flechas)","senior","longbow",12),
-                            new Torneo("Torneo senior Antequera Certera (20 rondas a 3 flechas)","senior","desnudo",20),
-                            new Torneo("Torneo senior Final Copa Nacional (12 rondas a 6 flechas)","senior","instintivo",12),
-                            new Torneo("Torneo veterano Final Copa Regional (12 rondas a 6 flechas)","veterano","instintivo",12),
-                            new Torneo("Torneo veterano Churriana en la Diana (20 rondas a 3 flechas)","veterano","olimpico",20),
-                            new Torneo("Torneo veterano Amigos del Arco (12 rondas a 6 flechas)","veterano","longbow",12),
-                            new Torneo("Torneo veterano Antequera Certera (20 rondas a 3 flechas)","veterano","desnudo",20)
-                        ];
-        function Torneo(nombre,edad,tipo,rondas){
-            this.nombre = nombre;
-            this.edad = edad;
-            this.tipo = tipo;
-            this.rondas = rondas;
-        }
-
-        function filtro(torneo){
-            var getSelectedValue1 = document.querySelector('input[name="edad"]:checked');   
-            var getSelectedValue2 = document.querySelector('input[name="modalidad"]:checked'); 
-            var a = true;
-            var b = true;
-            if(getSelectedValue1!=null){
-                a=torneo.edad== getSelectedValue1.value;
-            }
-            if(getSelectedValue2!=null){
-                b=torneo.tipo==getSelectedValue2.value;
-            }
-            return  a&& b;
-        }
-
-        function myFunction() {
-            let e = document.getElementById("nombre");
-            
-            var lista = torneos.filter(filtro);
-            let botones = document.getElementById("botones");
-            botones.innerHTML = "";
-            
-            lista.forEach(e => agregarBoton(botones,e.nombre,"cargarPagina("+e.tipo+","+e.edad+","+e.rondas+")"));
-            
-            
-        }
-        function agregarBoton(elemento, texto, funcion) { 
-            elemento.innerHTML+='<input type="button" class="btn btn-outline-dark btn-lg" value="'+texto+'" onclick="'+funcion+'">'; 
-        } 
-        function cargarPagina(tipo,edad,rondas){
-            let e = document.getElementById("nombre");
-            if(e.value==""){
-                document.getElementById("error").hidden=false;
-            }else{
-                location.replace("./torneo.html?nombre="+e.value+"&tipo="+tipo.value+"&edad="+edad.value+"&rondas="+rondas);
-            }
-        }
-    </script>
-
+    <script src="index.js"></script>
 </head>
 <body>
     
@@ -161,7 +100,6 @@
             <div class="col">
                 <h1>Torneos disponibles:</h1>
                 <p class="fs-5"> Pulse en el torneo al que desee acceder </p>
-
                 <div id ="botones" class="d-grid gap-2 col-sm-6"></div>
             </div>
         </div>
